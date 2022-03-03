@@ -29,6 +29,8 @@ def threadedClient(conn):
             conn.sendall(str.encode(reply))
         except:
             break
+    print("Lost connection")
+    conn.close()
 
 while True:
     conn, addr = sckt.accept()
