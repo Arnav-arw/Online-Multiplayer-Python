@@ -6,8 +6,10 @@ class network:
         self.server = "192.168.1.41"
         self.port = 5555
         self.addr = (self.server, self.port)
-        self.id = self.connect()
-        print(self.id)
+        self.pos = self.connect()
+    
+    def getPos(self):
+        return self.pos
     
     def connect(self):
         try:
@@ -22,10 +24,3 @@ class network:
             return self.client.recv(2048).decode()
         except socket.error as e:
             print(e)
-
-n = network()
-print(n.send("Hello"))
-print(n.send("It's me"))
-print(n.send("I was wondering if after all these years you'd like to meet"))
-print(n.send("To go over everything"))
-print(n.send("They say that time's supposed to heal ya"))
