@@ -31,19 +31,20 @@ class player():
             self.y += self.vel
         self.rect = (self.x, self.y, self.width, self.height)
 
-def redrawWindow(win, clientNumber):
+def redrawWindow(win, player):
     win.fill((255, 255, 255))
-    font = pygame.font.SysFont("comicsans", 40)
-    text = font.render("Client " + str(clientNumber), 1, (0, 0, 0))
-    win.blit(text, (250 - (text.get_width() / 2), 250 - (text.get_height() / 2)))
+    player.draw(win)
     pygame.display.update()
 
 def main():
     run = True
+    p = player(250, 250, 50, 50, (0, 0, 255))
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
                 pygame.quit()
+        p.move()
+        redrawWindow(win, p)
 
-        redrawWindow(win, clientNumber)
+main()
